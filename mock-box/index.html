@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MockBOX</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+<body>
+  <h1>MockBOX</h1>
+  <textarea id="clientConnectionInfo">No clients currently connected.</textarea>
+  <ul></ul>
+
+  <script>
+    const electron = require('electron');
+    const {ipcRenderer} = electron;
+
+    // BOX Connection Info Stuff
+    ipcRenderer.on('server:listening', (loc)=>{
+      const bci = document.getElementById('clientConnectionInfo');
+      bci.textContent = 'Server listening at ' + loc;
+      
+    });
+
+    ipcRenderer.on('client:connected', function (e, info){
+      const bci = document.getElementById('clientConnectionInfo');
+      bci.textContent = `Connected to client: ${info}`;
+      const ul = document.querySelector('ul');
+      ul.appendChild(info);
+    });
+
+    ipcRenderer.on('data', (data)=>{
+      const ul = document.querySelector('ul');
+      ul.appendChild(`data received: ${data}`);
+    });
+
+    ipcRenderer.on('client:disconnected', ()=>{
+      const bci = document.getElementById('clientConnectionInfo');
+      bci.textContent = 'No clients currently connected.';
+    });
+  </script>
+</body>
+</html>

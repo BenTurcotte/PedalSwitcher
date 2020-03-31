@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TestApp</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+<body>
+  <nav>
+    <div class="nav-wrapper">
+      <a class="brand-logo center">BOX Connection</a>
+    </div>
+  </nav>
+
+  <textarea id="boxConnectionInfo">Not connected to BOX.</textarea><button id="connectBtn">Connect...</button>
+  <ul class="container" id="boxResponsesList"></ul>
+  <!-- <button type="button" id="pcBtn" >Send Preset Change</button> -->
+
+  <script>
+    
+    const electron = require('electron');
+    const {ipcRenderer} = electron;
+
+    const cb = document.getElementById('connectBtn');
+    cb.addEventListener('click', (ev)=>{
+      ev.preventDefault();
+      if (cb.textContent === "Disconnect"){
+        ipcRenderer.send('box:disconnect');
+      }
+      else{
+        ipcRenderer.send('mainWin:connect');
+      }
+    })
+
+    // BOX Connection Info Stuff
+    ipcRenderer.on('box:connect', function (e, info){
+      const bci = document.getElementById('boxConnectionInfo');
+      bci.textContent = 'Connected to BOX at ' + info.address + ':' + info.port;
+
+      const connectBtn = document.getElementById('connectBtn');
+      connectBtn.textContent = "Disconnect";
+    });
+
+    ipcRenderer.on('box:disconnect', function (e, info){
+      const bci = document.getElementById('boxConnectionInfo');
+      bci.textContent = 'Not connected to BOX.';
+
+      const connectBtn = document.getElementById('connectBtn');
+      connectBtn.textContent = "Connect";
+    });
+
+    // Preset Change Button
+    // const presetChangeBtn = document.getElementById('pcBtn');
+    // presetChangeBtn.addEventListener('click', function(e) {
+    //   e.preventDefault();
+    //   ipcRenderer.send('makeCmd:presetChange');
+    // });
+  </script>
+</body>
+</html>

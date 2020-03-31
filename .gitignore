@@ -1,3 +1,7 @@
-node_modules/
+node_modules/*
 mock-box/node_modules/
 app/node_modules/
+*.DS_Store
+*release-builds/
+*dist/
+*build/

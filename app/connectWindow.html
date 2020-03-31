@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Connect to SwitcherBox</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+<body>
+  <div class="container">
+    <form>
+      <div>
+        <div>
+          <label>IP: </label>
+          <input type="text" id="address" autofocus>
+        </div>
+        <div>
+          <label>Port: </label>
+          <input type="number" id="port">
+        </div>
+      </div>
+      <button class="btn waves-effect waves-light" type="submit">Connect</button>
+    </form>
+  </div>
+
+  <script>
+
+    const electron = require('electron');
+    const {ipcRenderer} = electron;
+    
+    const form = document.querySelector('form');
+    
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      // const info = document.querySelector('#address').value;
+      const info = {
+        "address" : document.querySelector('#address').value,
+        "port" : document.querySelector('#port').value
+      };
+      ipcRenderer.send('box:connect', info);
+    });
+
+  </script>
+</body>
+</html>
