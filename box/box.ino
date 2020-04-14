@@ -46,33 +46,33 @@ void loop() {
   // wait for a new client:
   EthernetClient client = server.available();
 
-   if (client.available() > 0) {
-      // read the bytes incoming from the client:
-      byte incomingByte = client.read();
+  if (client.available() > 0) {
+    // read the bytes incoming from the client:
+    byte incomingByte = client.read();
 
-      //Save the message if space
+    //Save the message if space
 
-      if (inc < sizeof(message)) {
-        message[inc] = incomingByte;
-        inc += 1;
-      }
-
-
-      if (  char(incomingByte) == '\n' ) {
-        if (message[0] == 80) {
-            PresetChange();
-        }
-
-        if (message[0] == 77) {
-            MidiChange();
-        }
-
-        memset(message, 0, sizeof(message));
-        inc = 0;
-      }
-
+    if (inc < sizeof(message)) {
+      message[inc] = incomingByte;
+      inc += 1;
     }
+
+
+    if (  char(incomingByte) == '\n' ) {
+      if (message[0] == 80) {
+          PresetChange();
+      }
+
+      if (message[0] == 77) {
+          MidiChange();
+      }
+
+      memset(message, 0, sizeof(message));
+      inc = 0;
+    }
+
   }
+}
 
 void PresetChange(){
   Serial.println("Preset Message RX");

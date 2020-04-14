@@ -1,61 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TestApp</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>APP</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
 </head>
 <body>
-  <nav>
+  
+  <nav class="lighten-3 grey">
     <div class="nav-wrapper">
-      <a class="brand-logo center">BOX Connection</a>
+      <a class="brand-logo center blue-grey-text text-darken-4">APP</a>
     </div>
   </nav>
 
-  <textarea id="boxConnectionInfo">Not connected to BOX.</textarea><button id="connectBtn">Connect...</button>
-  <ul class="container" id="boxResponsesList"></ul>
-  <!-- <button type="button" id="pcBtn" >Send Preset Change</button> -->
+  <div class="divider"></div>
 
-  <script>
-    
-    const electron = require('electron');
-    const {ipcRenderer} = electron;
+  <div class="container">
+    <div class="row">
+      <div class="col s9">
+        <span class="flow-text" id="boxConnectionInfo">
+          Not connected to BOX.
+        </span>
+      </div>
+      <div class="col s3">
+        <button class="btn waves-effect waves-light" id="connectBtn">
+          Connect...
+        </button>
+      </div>
+    </div>
+  </div>
 
-    const cb = document.getElementById('connectBtn');
-    cb.addEventListener('click', (ev)=>{
-      ev.preventDefault();
-      if (cb.textContent === "Disconnect"){
-        ipcRenderer.send('box:disconnect');
-      }
-      else{
-        ipcRenderer.send('mainWin:connect');
-      }
-    })
+  <div class="divider"></div>
+  <div class="container">
+    <div class="center-align">
+      <div class="switch">
+        <label>
+          Loop 1
+          <input type="checkbox" name="loopCheckboxes" id="loop1" />
+          <span class="lever"></span>
+        </label>
+      </div>
+      <div class="switch">
+        <label>
+          Loop 2
+          <input type="checkbox" name="loopCheckboxes" id="loop2" />
+          <span class="lever"></span>
+        </label>
+      </div>
+      <div class="switch">
+        <label>
+          Loop 3
+          <input type="checkbox" name="loopCheckboxes" id="loop3" />
+          <span class="lever"></span>
+        </label>
+      </div>
+      <div class="switch">
+        <label>
+          Loop 4
+          <input type="checkbox" name="loopCheckboxes" id="loop4" />
+          <span class="lever"></span>
+        </label>
+      </div>
+      <div class="switch">
+        <label>
+          Loop 5
+          <input type="checkbox" name="loopCheckboxes" id="loop5" />
+          <span class="lever"></span>
+        </label>
+      </div>
+      <div class="switch">
+        <label>
+          Loop 6
+          <input type="checkbox" name="loopCheckboxes" id="loop6" />
+          <span class="lever"></span>
+        </label>
+      </div>
+      <div class="switch">
+        <label>
+          Loop 7
+          <input type="checkbox" name="loopCheckboxes" id="loop7" />
+          <span class="lever"></span>
+        </label>
+      </div>
+      <div class="switch">
+        <label>
+          Loop 8
+          <input type="checkbox" name="loopCheckboxes" id="loop8" />
+          <span class="lever"></span>
+        </label>
+      </div>
+    </div>
+    <form class="center-align" id="loopForm">
+      <button class="btn waves-effect waves-light" type="submit" id="loopSubmit">Send Cmd</button>
+    </form>
+</div>
 
-    // BOX Connection Info Stuff
-    ipcRenderer.on('box:connect', function (e, info){
-      const bci = document.getElementById('boxConnectionInfo');
-      bci.textContent = 'Connected to BOX at ' + info.address + ':' + info.port;
-
-      const connectBtn = document.getElementById('connectBtn');
-      connectBtn.textContent = "Disconnect";
-    });
-
-    ipcRenderer.on('box:disconnect', function (e, info){
-      const bci = document.getElementById('boxConnectionInfo');
-      bci.textContent = 'Not connected to BOX.';
-
-      const connectBtn = document.getElementById('connectBtn');
-      connectBtn.textContent = "Connect";
-    });
-
-    // Preset Change Button
-    // const presetChangeBtn = document.getElementById('pcBtn');
-    // presetChangeBtn.addEventListener('click', function(e) {
-    //   e.preventDefault();
-    //   ipcRenderer.send('makeCmd:presetChange');
-    // });
-  </script>
+  <script type="text/javascript" src="mainWindow.js"></script>
 </body>
 </html>

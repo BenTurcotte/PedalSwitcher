@@ -5,39 +5,85 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MockBOX</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
-  <h1>MockBOX</h1>
-  <textarea id="clientConnectionInfo">No clients currently connected.</textarea>
-  <ul></ul>
+  <nav class="blue-grey-text text-lighten-3 grey darken-3">
+    <div class="nav-wrapper">
+      <a class="brand-logo center">MockBOX</a>
+    </div>
+  </nav>
+
+  <p id="clientConnectionInfo">No clients currently connected.</p>
+  
+  <div class="divider"></div>
+  <div class="row">
+    <div class="col s10">
+      <ul></ul>
+    </div>
+    <div class="col s2">
+      <a class="waves-effect waves-light btn right" id="clearBtn">
+        Clear Log
+      </a>
+    </div>
+  </div>
+
+  <!--
+    For the duration of the scripts running, use the module as the window's module.
+    
+    Done to prevent errors like '$ is not defined' etc.
+    
+    Suggested by Bruno Vaz on SO: https://stackoverflow.com/a/32621989
+  -->
+  <script>
+    if (typeof module === 'object') {
+      window.module = module;
+      module = undefined;
+    }
+  </script>
+
+  <!-- script imports  -->
+  <script src="assets/jquery-3.5.0.slim.min.js"></script>
 
   <script>
     const electron = require('electron');
     const {ipcRenderer} = electron;
 
-    // BOX Connection Info Stuff
-    ipcRenderer.on('server:listening', (loc)=>{
-      const bci = document.getElementById('clientConnectionInfo');
-      bci.textContent = 'Server listening at ' + loc;
+    // IPC Event Handlers ------------------------------------------------------
+    ipcRenderer.on('client-connected', function (sender, info){
+      const connectionInfo = document.getElementById('clientConnectionInfo');
+      connectionInfo.innerText = `Connected to client ${info.toString()}`;
+      console.log('connected to client.')
+      console.log(info);
+    });
+
+    ipcRenderer.on('client-disconnected', ()=>{
+      const connectionInfo = document.getElementById('clientConnectionInfo');
       
+      connectionInfo.innerText = 'No clients currently connected.';
+      console.log('disconnected from client.')
     });
 
-    ipcRenderer.on('client:connected', function (e, info){
-      const bci = document.getElementById('clientConnectionInfo');
-      bci.textContent = `Connected to client: ${info}`;
+    ipcRenderer.on('client-cmd-processed', (sender, cmdBytes)=>{
       const ul = document.querySelector('ul');
-      ul.appendChild(info);
+      const li = document.createElement('li');
+      li.appendChild(document.createTextNode(cmdBytes))
+      ul.appendChild(li)
+      const clearBtn = document.getElementById('clearBtn');
+      
+      // TODO: enable "clear" btn only when there are messages being displayed
+      console.log(`data received from client: ${cmdBytes}`);
     });
 
-    ipcRenderer.on('data', (data)=>{
+    // document Event Handlers -------------------------------------------------
+    document.getElementById('clearBtn').addEventListener('click', (element, event) => {
       const ul = document.querySelector('ul');
-      ul.appendChild(`data received: ${data}`);
-    });
-
-    ipcRenderer.on('client:disconnected', ()=>{
-      const bci = document.getElementById('clientConnectionInfo');
-      bci.textContent = 'No clients currently connected.';
+      ul.innerHTML = "";
     });
   </script>
+
+  <!-- restore the module -->
+  <script>if (window.module) module = window.module;</script>
+
 </body>
 </html>

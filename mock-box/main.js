@@ -1,14 +1,19 @@
 const electron = require('electron');
 const net = require('net');
 
-const {app, BrowserWindow} = electron;
+const {app, BrowserWindow, ipcMain} = electron;
 
-let mainWin;
+let mainWindow;
 let server;
 
 app.whenReady().then(()=>{
+  createMainWindow();
+  createServer();
+});
+
+function createMainWindow(){
   // Create the browser window.
-  mainWin = new BrowserWindow({
+  mainWindow = new BrowserWindow({
     width: 400,
     height: 400,
     x:0,
@@ -19,38 +24,63 @@ app.whenReady().then(()=>{
   })
 
   // and load the index.html of the app.
-  mainWin.loadFile('index.html')
+  mainWindow.loadFile('index.html')
 
-  server = net.createServer((connection) => {
-    console.log('client connected');
-   
-    connection.on('end', function() {
-        console.log('client disconnected');
-    });
-    
-    connection.write('Hello World!\r\n');
-    connection.pipe(connection);
-
-    cconnection.on('data', (data)=>{
-      console.log('received data from client: ' + data);
-      mainWin.webContents.send('data', data);
-    });
-
-    // c.write('hello from server!\r\n');
-    // c.pipe(c);
-  });
-
-  server.on('error', (err) => {
-    throw err;
-  });
-
-  server.listen(8124, 'localhost', () => {
-    console.log('Listening at localhost:8124');
-    mainWin.webContents.send('server:listening', 'localhost:8124');
-  });
-
-  mainWin.on('close', (e)=>{
+  mainWindow.on('close', (e)=>{
+    if (server)
+      server.close()
     console.log('exiting... ')
-    server.close()
   })
-});
+}
+
+function createServer(){
+  server = net.createServer();
+  
+  server.listen(8124, 'localhost', ()=>{
+    console.log('attempting to open server at localhost:8124')
+  })
+  
+  .on('listening', () => {
+    console.log('server is listening...')
+  })
+  
+  .on('connection', (socket) => {
+    console.log('connection established.');
+    const address = socket.address();
+    mainWindow.webContents.send('client-connected', `${address.address}:${address.port} (${address.family})`);
+
+    // socket.write('Hello Client! (from Server)\r\n');
+
+    socket.on('data', (data) => {
+      let bytesAsStr = `${data.readUInt8(0)}, ${data.readUInt8(1)}, ${data.readUInt8(2)}, ${data.readUInt8(3)}`
+      console.log(`Received data from client.`);
+      console.log(`  # of bytes received: ${data.byteLength}`);
+      console.log(`  Values of bytes: ${bytesAsStr}`);
+      
+      // TODO: interperet cmd from client and send something more meaningful to renderer process
+      
+      mainWindow.webContents.send('client-cmd-processed', `${bytesAsStr}`);
+    })
+    .on('end', () => {
+      console.log('connection ending.');
+      mainWindow.webContents.send('client-disconnected', `${socket.address}:${socket.port}`);
+    })
+    .on('error', (err) => {
+      console.log('encountered error:');
+      console.log(err);
+    });
+  })
+  
+  .on('error', (err) => {
+    if (e.code === 'EADDRINUSE') {
+      console.log('Address in use, retrying...');
+      setTimeout(() => {
+        server.close();
+        server.listen(PORT, HOST);
+      }, 1000);
+    }
+    else {
+      throw err;
+    }
+  })
+}
