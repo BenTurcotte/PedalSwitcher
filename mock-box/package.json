@@ -1,7 +1,7 @@
 {
   "name": "mock-box",
   "productName": "MockBOX",
-  "version": "1.0.0",
+  "version": "0.0.2",
   "description": "fake BOX server...  used for dev purposes",
   "main": "main.js",
   "scripts": {
@@ -10,8 +10,8 @@
     "dist": "electron-builder",
     "postinstall": "electron-builder install-app-deps",
     "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=assets/icons/mac/icon.icns --prune=true --out=release-builds",
-    "package-win": "electron-packager . electrontest --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"MockBOX\"",
-    "package-linux": "electron-packager . electrontest --overwrite --asar=true --platform=linux --arch=x64 --icon=assets/icons/png/icon.png --prune=true --out=release-builds"
+    "package-win": "electron-packager . MockBOX --overwrite --asar --platform=win32 --arch=ia32 --icon=assets/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"MockBOX\"",
+    "package-linux": "electron-packager . MockBOX --overwrite --asar --platform=linux --arch=x64 --icon=assets/icons/png/icon.png --prune=true --out=release-builds"
   },
   "repository": {
     "type": "git",

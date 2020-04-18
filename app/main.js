@@ -10,8 +10,7 @@ const {app, BrowserWindow, Menu, ipcMain} = electron;
 let mainWindow;
 let connectWin;
 let mainMenu;
-
-const client = new net.Socket();
+let client; // : net.Socket; // this isn't typescript so can't annotate Type
 
 // create MainWindow -----------------------------------------------------------
 function createMainWindow() {
@@ -22,7 +21,7 @@ function createMainWindow() {
     height:400,
     webPreferences: {
       // expose node stuff to frontend...  many security risks...  whatever.
-      // (for now) I'll be an asshole and I not give a shit about security
+      // (for now) I'll be an asshole and not give a shit about security
       nodeIntegration: true
     }
   });
@@ -30,8 +29,10 @@ function createMainWindow() {
   mainWindow.loadFile(path.join(__dirname, 'mainWindow.html'))
 
   mainWindow.on('closed', function(){
-    if (client)
+    if (client) {
       client.destroy();
+      client = null;
+    }
     app.quit()
   });
 
@@ -64,25 +65,40 @@ app.on('ready', createMainWindow);
 // IPC Event Handling ----------------------------------------------------------
 ipcMain.on('box-connect-new', function(e, info){
   
+  if (client == null || typeof(client) != typeof(net.Socket)) {
+    
+    client = new net.Socket();
+    
+    client.setEncoding('utf-8')
+    
+    // callbacks must be set only once per instantiation of client otherwise a
+    // copy of the callback function will be added every time a connection is
+    // established
+    client.on('error', (err) => {
+      console.error(err)
+      connectWin.webContents.send('box-connection-attempt-error', err.message)
+    })
+    
+    client.on('data', (data) => {
+      console.log(`Received data from server: ${data}`);
+      mainWindow.webContents.send('server-data-received', data)
+    })
+    
+    client.on('connect', () => {
+      // FIXME: connect occurs twice if try to reconnect after disconnect
+      // repro: connect, disconnect, try connect again (same address) will cause error
+      console.log(`Connected to server at ${info.address}:${info.port}`);
+      mainWindow.webContents.send('box-connection-established', info);
+      connectWin.close()
+    })
+    
+    client.on('end', () => {
+      console.log('Box connection ended.');
+      mainWindow.webContents.send('box-connection-ended');
+    })
+  }
+
   client.connect({port:info.port, host:info.address})
-  client.setEncoding('utf-8')
-  client.on('error', (err) => {
-    console.error(err)
-    connectWin.webContents.send('box-connection-attempt-error', err.message)
-  })
-  client.on('data', (data) => {
-    console.log(`Received data from server: ${data}`);
-    mainWindow.webContents.send('server-data-received', data)
-  })
-  client.on('connect', () => {
-    console.log(`Connected to server at ${info.address}:${info.port}`);
-    mainWindow.webContents.send('box-connection-established', info);
-    connectWin.close()
-  })
-  client.on('end', () => {
-    console.log('Box connection ended.');
-    mainWindow.webContents.send('box-connection-ended');
-  })
 })
 
 ipcMain.on('box-connect-cancelled', () => {
@@ -92,9 +108,19 @@ ipcMain.on('box-connect-cancelled', () => {
 
 ipcMain.on('box-disconnect', (e)=>{
   console.log('Disconnecting from server...');
-  client ?? client.destroy();
-  console.log('Successfully disconnected from server.');
-  mainWindow.webContents.send('box-connection-ended');
+  if (client != null) {
+    client.end(() => {
+      client.destroy()
+      client = null
+      console.log('Successfully disconnected from server.');
+      mainWindow.webContents.send('box-connection-ended');
+    })
+  }
+  else {
+    const msg = 'Client was null...  cannot disconnect.';
+    console.log(msg)
+    mainWindow.webContents.send('box-connection-error', msg);
+  }
 })
 
 ipcMain.on('req-box-connect', (e)=>{
@@ -127,6 +153,8 @@ ipcMain.on('send-box-cmd-preset-change', (e, args)=>{
   else
     console.log('cannot send cmd...  must establish connection to BOX first.')
 });
+
+
 
 // create menu template --------------------------------------------------------
 const mainMenuTemplate = [
