@@ -1,28 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Connect to SwitcherBox</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <title>Connect to BOX</title>
 </head>
 <body>
-  <div class="container">
-    <form>
-      <div>
-        <div>
-          <label>IP: </label>
-          <input type="text" id="address" autofocus value="localhost">
-        </div>
-        <div>
-          <label>Port: </label>
-          <input type="number" id="port" value="8124">
-        </div>
-        <div id="errMsg" class="red-text">
-        </div>
-      </div>
-      <button class="btn waves-effect waves-light" type="submit">Connect</button>
-      <button class="btn" id="cancelBtn">Cancel</button>
-    </form>
-  </div>
+  <table>
+    <tr>
+      <td>
+        <label>IP: </label>
+      </td>
+      <td>
+        <input type="text" id="address" autofocus value="localhost">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label>Port: </label>
+      </td>
+      <td>
+        <input type="number" id="port" value="8124">
+      </td>
+    </tr>
+  </table>
+  <hr />
+  
+  <button id="connectBtn">Connect</button>
+  <button id="cancelBtn">Cancel</button>
 
   <script type="text/javascript" src="connectWindow.js"></script>
 </body>

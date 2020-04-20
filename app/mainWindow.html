@@ -2,102 +2,44 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>APP</title>
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="stylesheet" href="assets/css/pedal.css" />
 </head>
 <body>
   
-  <nav class="lighten-3 grey">
-    <div class="nav-wrapper">
-      <a class="brand-logo center blue-grey-text text-darken-4">APP</a>
-    </div>
-  </nav>
-
-  <div class="divider"></div>
-
-  <div class="container">
-    <div class="row">
-      <div class="col s9">
-        <span class="flow-text" id="boxConnectionInfo">
-          Not connected to BOX.
-        </span>
-      </div>
-      <div class="col s3">
-        <button class="btn waves-effect waves-light" id="connectBtn">
-          Connect...
-        </button>
-      </div>
-    </div>
+  <div class="window-title-panel">
+    <p>APP</a>
   </div>
 
-  <div class="divider"></div>
-  <div class="container">
-    <div class="center-align">
-      <div class="switch">
-        <label>
-          Loop 1
-          <input type="checkbox" name="loopCheckboxes" id="loop1" />
-          <span class="lever"></span>
-        </label>
-      </div>
-      <div class="switch">
-        <label>
-          Loop 2
-          <input type="checkbox" name="loopCheckboxes" id="loop2" />
-          <span class="lever"></span>
-        </label>
-      </div>
-      <div class="switch">
-        <label>
-          Loop 3
-          <input type="checkbox" name="loopCheckboxes" id="loop3" />
-          <span class="lever"></span>
-        </label>
-      </div>
-      <div class="switch">
-        <label>
-          Loop 4
-          <input type="checkbox" name="loopCheckboxes" id="loop4" />
-          <span class="lever"></span>
-        </label>
-      </div>
-      <div class="switch">
-        <label>
-          Loop 5
-          <input type="checkbox" name="loopCheckboxes" id="loop5" />
-          <span class="lever"></span>
-        </label>
-      </div>
-      <div class="switch">
-        <label>
-          Loop 6
-          <input type="checkbox" name="loopCheckboxes" id="loop6" />
-          <span class="lever"></span>
-        </label>
-      </div>
-      <div class="switch">
-        <label>
-          Loop 7
-          <input type="checkbox" name="loopCheckboxes" id="loop7" />
-          <span class="lever"></span>
-        </label>
-      </div>
-      <div class="switch">
-        <label>
-          Loop 8
-          <input type="checkbox" name="loopCheckboxes" id="loop8" />
-          <span class="lever"></span>
-        </label>
-      </div>
-    </div>
-    <form class="center-align" id="loopForm">
-      <button class="btn waves-effect waves-light" type="submit" id="loopSubmit">Send Cmd</button>
-    </form>
-</div>
+  <div class="horizontal-flex">
+    <p id="boxConnectionInfo" style="width: 60%;">
+      Not connected to BOX.
+    </p>
+    <span style="width: 15%;"></span>
+    <button id="connectBtn" style="width: 25%;">
+      Connect...
+    </button>
+  </div>
+  <hr />
+  <h2>Loop States</h2>
+  <table class="pedal-table">
+    <tr>
+      <td><div class="pedal pedal-disabled pedal-off" id="pedal1"><p>1</p></div></td>
+      <td><div class="pedal pedal-disabled pedal-off" id="pedal2"><p>2</p></div></td>
+      <td><div class="pedal pedal-disabled pedal-off" id="pedal3"><p>3</p></div></td>
+      <td><div class="pedal pedal-disabled pedal-off" id="pedal4"><p>4</p></div></td>
+    </tr>
+    <tr>
+      <td><div class="pedal pedal-disabled pedal-off" id="pedal5"><p>5</p></div></td>
+      <td><div class="pedal pedal-disabled pedal-off" id="pedal6"><p>6</p></div></td>
+      <td><div class="pedal pedal-disabled pedal-off" id="pedal7"><p>7</p></div></td>
+      <td><div class="pedal pedal-disabled pedal-off" id="pedal8"><p>8</p></div></td>
+    </tr>
+  </table>
+  <hr />
+  <h2>MIDI Control</h2>
 
   <script type="text/javascript" src="mainWindow.js"></script>
 </body>

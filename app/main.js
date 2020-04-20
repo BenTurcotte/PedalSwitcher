@@ -12,6 +12,23 @@ let connectWin;
 let mainMenu;
 let client; // : net.Socket; // this isn't typescript so can't annotate Type
 
+// Ensure Cleanup --------------------------------------------------------------
+function ensureCleanup() {
+  if (connectWin != null) {
+    connectWin.close();
+    connectWin = null;
+  }
+  if (client != null) {
+    client.end();
+    client.destroy();
+    client = null;
+  }
+  if (mainWindow != null) {
+    mainWindow.close();
+    mainWindow = null;
+  }
+}
+
 // create MainWindow -----------------------------------------------------------
 function createMainWindow() {
   mainWindow = new BrowserWindow({
@@ -127,7 +144,7 @@ ipcMain.on('req-box-connect', (e)=>{
   createConnectWindow();
 })
 
-ipcMain.on('send-box-cmd-preset-change', (e, args)=>{
+ipcMain.on('send-box-cmd-audio-preset-change', (e, args)=>{
   let oneHot = 0x00;
   for (let i = 0; i < args.length; i++) {
     if (args[i] == true){
@@ -137,12 +154,12 @@ ipcMain.on('send-box-cmd-preset-change', (e, args)=>{
   
   // Msg bytes:
   // [
-  //   P (8),
+  //   A (65),
   //   binary one-hot rep of loop states,
   //   line feed (13),
   //   new-line (10)
   // ]
-  let boxCmd = Buffer.from([0x50, oneHot, 0x0D, 0x0A])
+  let boxCmd = Buffer.from([0x41, oneHot, 0x0D, 0x0A])
   
   console.log(`Sending loop states to BOX.`);
   console.log(`  Loop States: ${args}`);
@@ -156,7 +173,7 @@ ipcMain.on('send-box-cmd-preset-change', (e, args)=>{
 
 
 
-// create menu template --------------------------------------------------------
+// MENU TEMPLATE --------------------------------------------------------
 const mainMenuTemplate = [
   {
     label:'APP',
@@ -167,6 +184,7 @@ const mainMenuTemplate = [
           ? 'Command+Q'
           : 'Ctrl+Q',
         click(){
+          ensureCleanup();
           app.quit();
         }
       }
