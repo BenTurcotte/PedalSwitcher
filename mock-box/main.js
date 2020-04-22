@@ -52,7 +52,8 @@ function createServer(){
     // socket.write('Hello Client! (from Server)\r\n');
 
     socket.on('data', (data) => {
-      let bytesAsStr = `${data.readUInt8(0)}, ${data.readUInt8(1)}, ${data.readUInt8(2)}, ${data.readUInt8(3)}`
+
+      let bytesAsStr = data.join(', ');
       console.log(`Received data from client.`);
       console.log(`  # of bytes received: ${data.byteLength}`);
       console.log(`  Values of bytes: ${bytesAsStr}`);

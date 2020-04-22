@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Experimental UI Stuff</title>
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="stylesheet" href="assets/css/pedal.css" />
+  <style>
+    .slider {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 25px;
+      background: lightgray;
+      outline: none;
+      opacity: 0.7;
+      -webkit-transition: .2s;
+      transition: opacity .2s;
+      box-shadow: unset;
+    }
+
+    .slider:hover {
+      opacity: 1;
+      box-shadow: lightslategray;
+    }
+
+    .slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 25px;
+      height: 25px;
+      background: darkseagreen;
+      cursor: pointer;
+    }
+
+    .slider::-moz-range-thumb {
+      width: 25px;
+      height: 25px;
+      background: darkseagreen;
+      cursor: grabbing;
+    }
+  </style>
+</head>
+<body>
+  <h2>alt plan:</h2>
+  <p>Rather than trying to recreate the exact look of the knobs on a pedal...  transform the knob-based interface to a slider-based interface so it looks kind of like an EQ panel...  it will make software interaction nicer (spinning a knob with a mouse is lowkey a pain in the ass), make dev time shorter, and (imo) look and feel nicer...  easier to recognize preset values as well with the histogram-like view vs. the knob positions</p>
+  
+  <input type="range" min="0" max="127" value="23" step="" class="slider" id="testSlider" />
+  <Label id="testSliderValueLabel">23</Label>
+  
+  <hr />
+  <p id="knobValue">0</p>
+  <hr />
+  <div id="test-knob" class="knob">
+    <p>-</p>
+  </div>
+  <script type="text/javascript" src="experimentWindow.js"></script>
+</body>

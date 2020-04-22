@@ -13,6 +13,8 @@ const {ipcRenderer} = electron;
 //   ipcRenderer.send('box-connect-new', info);
 // });
 
+// TODO: put connection error section back in this popup window
+
 const connectBtn = document.getElementById('connectBtn')
 connectBtn.addEventListener('click', (sender) => {
   sender.preventDefault();

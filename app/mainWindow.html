@@ -6,12 +6,9 @@
 
   <link rel="stylesheet" href="assets/css/main.css" />
   <link rel="stylesheet" href="assets/css/pedal.css" />
+  <link rel="stylesheet" href="assets/css/midi.css" />
 </head>
 <body>
-  
-  <div class="window-title-panel">
-    <p>APP</a>
-  </div>
 
   <div class="horizontal-flex">
     <p id="boxConnectionInfo" style="width: 60%;">
@@ -40,6 +37,27 @@
   </table>
   <hr />
   <h2>MIDI Control</h2>
+  <table class="midi-cmd-table">
+    <tr>
+      <th>Channel</th>
+      <th>Message type</th>
+      <th>cmd byte 1</th>
+      <th>cmd byte 2</th>
+      <th></th>
+    </tr>
+    <tr>
+      <td><input type="number" max="16" min="1"  value="1" id="midiChannel" /></td>
+      <td>
+        <select id="midiMsgType">
+          <option value="PC">PC</option>
+          <option value="CC">CC</option>
+        </select>
+      </td>
+      <td><input type="number" max="127" min="0" value="0" id="midiByte1" /></td>
+      <td><input type="number" max="127" min="0" value="0" id="midiByte2" /></td>
+      <td><button id="midiSendBtn">Send</button></td>
+    </tr>
+  </table>
 
   <script type="text/javascript" src="mainWindow.js"></script>
 </body>

@@ -82,6 +82,24 @@ pedalElems[7].addEventListener('click', () => { updateLoopState(7) });
 
 
 // =================================================================================================
+const midiSendBtn = document.getElementById('midiSendBtn');
+const midiChannel = document.getElementById('midiChannel');
+const midiMsgType = document.getElementById('midiMsgType');
+const midiByte1 = document.getElementById('midiByte1');
+const midiByte2 = document.getElementById('midiByte2');
+
+midiSendBtn.addEventListener('click', () => {
+  console.log(`sending midi cmd: ${midiChannel.value}, ${midiMsgType.value}, ${midiByte1.value}, ${midiByte2.value}`);
+  ipcRenderer.send('send-box-cmd-midi', {
+    channel: midiChannel.value,
+    type: midiMsgType.value,
+    byte1: midiByte1.value,
+    byte2: midiByte2.value,
+  });
+});
+
+
+// =================================================================================================
 ipcRenderer.on('server-data-received', (sender, data) => {
   // TODO: implement BOX state verification from response from server (waiting on HW implementation)
   console.log(`Received data from server: ${data}`);

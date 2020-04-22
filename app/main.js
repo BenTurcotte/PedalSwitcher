@@ -32,16 +32,18 @@ function ensureCleanup() {
 // create MainWindow -----------------------------------------------------------
 function createMainWindow() {
   mainWindow = new BrowserWindow({
+    icon: path.join(__dirname, 'assets/icons/png/icon.png'),
     x:410,
     y:0,
-    width:500,
-    height:400,
+    // center:true,
     webPreferences: {
       // expose node stuff to frontend...  many security risks...  whatever.
       // (for now) I'll be an asshole and not give a shit about security
       nodeIntegration: true
     }
-  });
+  })
+
+  mainWindow.maximize()
 
   mainWindow.loadFile(path.join(__dirname, 'mainWindow.html'))
 
@@ -51,11 +53,13 @@ function createMainWindow() {
       client = null;
     }
     app.quit()
-  });
+  })
 
   // build menu from template
   mainMenu = Menu.buildFromTemplate(mainMenuTemplate);
   Menu.setApplicationMenu(mainMenu);
+
+  mainWindow.show()
 }
 
 // handle create connectWindow -------------------------------------------------
@@ -75,9 +79,6 @@ function createConnectWindow(){
   })
   connectWin.loadFile(path.join(__dirname, 'connectWindow.html'))
 }
-
-// Listen for app to be ready
-app.on('ready', createMainWindow);
 
 // IPC Event Handling ----------------------------------------------------------
 ipcMain.on('box-connect-new', function(e, info){
@@ -114,7 +115,7 @@ ipcMain.on('box-connect-new', function(e, info){
       mainWindow.webContents.send('box-connection-ended');
     })
   }
-
+  
   client.connect({port:info.port, host:info.address})
 })
 
@@ -171,6 +172,38 @@ ipcMain.on('send-box-cmd-audio-preset-change', (e, args)=>{
     console.log('cannot send cmd...  must establish connection to BOX first.')
 });
 
+ipcMain.on('send-box-cmd-midi', (elem, msgObj) => {
+  // TODO: implement midi cmd send to BOX
+  console.log('midi cmd send not fully implemented yet. here;s the data that we still need to interpret:')
+  console.log(msgObj)
+
+  const cmdId = msgObj.type == 'PC' ? 0x50 : 0x43;
+  const chan = parseInt(msgObj.midiChannel);
+  const b1 = parseInt(msgObj.byte1);
+  const b2 = parseInt(msgObj.byte2);
+
+  let boxCmd;
+  if (msgObj.type == 'PC') {
+    boxCmd = Buffer.from([cmdId, chan, b1]);
+    console.log(`Sending midi PC command to BOX.`);
+    console.log(`  cmd id, midi channel, pc value`);
+    console.log(`  Bytes: ${boxCmd.readUInt8(0)}, ${boxCmd.readUInt8(1)}, ${boxCmd.readUInt8(2)}`);
+  }
+  else {
+    boxCmd = Buffer.from([cmdId, chan, b1, b2]);
+    console.log(`Sending midi CC command to BOX.`);
+    console.log(`cmd id, midi channel, cc param, cc value`)
+    console.log(`  Bytes: ${boxCmd.readUInt8(0)}, ${boxCmd.readUInt8(1)}, ${boxCmd.readUInt8(2)}, ${boxCmd.readUInt8(3)}`)
+  }
+
+
+  // TODO: convert the four lines below into a reusable function
+  if (client && client.writable)
+    client.write(boxCmd);
+  else
+    console.log('cannot send cmd...  must establish connection to BOX first.');
+});
+
 
 
 // MENU TEMPLATE --------------------------------------------------------
@@ -181,8 +214,8 @@ const mainMenuTemplate = [
       {
         label:'Quit',
         accelerator: process.platform == 'darwin'
-          ? 'Command+Q'
-          : 'Ctrl+Q',
+        ? 'Command+Q'
+        : 'Ctrl+Q',
         click(){
           ensureCleanup();
           app.quit();
@@ -211,8 +244,8 @@ if (process.env.NODE_ENV !== 'production') {
       {
         label: 'Toggle DevTools',
         accelerator: process.platform == 'darwin'
-          ? 'Command+I'
-          : 'Ctrl+I',
+        ? 'Command+I'
+        : 'Ctrl+I',
         click(item, focusedWindow) {
           focusedWindow.toggleDevTools();
         }
@@ -220,7 +253,30 @@ if (process.env.NODE_ENV !== 'production') {
       {type: 'separator'},
       {
         role: 'reload'
+      },
+      {
+        label: 'Show Experiment Window',
+        accelerator: process.platform == 'darwin'
+        ? 'Command+X'
+        : 'Ctrl+X',
+        click(item, focusedWindow) {
+          const xwin = new BrowserWindow({
+            frame:true,
+            title:'Experiment Window',
+            webPreferences: {
+              nodeIntegration: true // bc fk ur security
+            }
+          })
+          xwin.loadFile(path.join(__dirname, 'experimentWindow.html'))
+        }
       }
     ]
   })
 }
+
+// APP STARTUP =====================================================================================
+const image = electron.nativeImage.createFromPath(
+  app.getAppPath() + "/assets/icons/mac/icon.icns"
+);
+app.dock.setIcon(image);
+app.on('ready', createMainWindow);
