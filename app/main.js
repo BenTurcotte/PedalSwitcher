@@ -1,9 +1,10 @@
 
-// process.env.NODE_ENV = 'production'; // comment out to enable devtools
+process.env.NODE_ENV = 'production'; // comment out to enable devtools
 
 const electron = require('electron');
 const path = require('path');
 const net = require('net');
+const os = require('os');
 
 const {app, BrowserWindow, Menu, ipcMain} = electron;
 
@@ -275,8 +276,12 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 // APP STARTUP =====================================================================================
-const image = electron.nativeImage.createFromPath(
-  app.getAppPath() + "/assets/icons/mac/icon.icns"
-);
-app.dock.setIcon(image);
+if (os.platform === 'darwin') {
+  // show proper icon in dock if on mac
+  const image = electron.nativeImage.createFromPath(
+    app.getAppPath() + "/assets/icons/mac/icon.icns"
+  );
+  console.log(`Retrieving icon image from: ${app.getAppPath() + iconPath}`);
+  app.dock.setIcon(image);
+}
 app.on('ready', createMainWindow);
