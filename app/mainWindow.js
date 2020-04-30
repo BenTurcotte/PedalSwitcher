@@ -80,6 +80,7 @@ pedalElems[5].addEventListener('click', () => { updateLoopState(5) });
 pedalElems[6].addEventListener('click', () => { updateLoopState(6) });
 pedalElems[7].addEventListener('click', () => { updateLoopState(7) });
 
+// TODO: way of renaming the loops (via right click context menu???)
 
 // =================================================================================================
 const midiSendBtn = document.getElementById('midiSendBtn');

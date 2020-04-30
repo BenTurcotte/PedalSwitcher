@@ -1,5 +1,5 @@
 
-process.env.NODE_ENV = 'production'; // comment out to enable devtools
+// process.env.NODE_ENV = 'production'; // comment out to enable devtools
 
 const electron = require('electron');
 const path = require('path');
@@ -175,23 +175,23 @@ ipcMain.on('send-box-cmd-audio-preset-change', (e, args)=>{
 
 ipcMain.on('send-box-cmd-midi', (elem, msgObj) => {
   // TODO: implement midi cmd send to BOX
-  console.log('midi cmd send not fully implemented yet. here;s the data that we still need to interpret:')
+  console.log('midi cmd send not fully implemented yet. Here\'s the data that we still need to interpret:')
   console.log(msgObj)
 
   const cmdId = msgObj.type == 'PC' ? 0x50 : 0x43;
-  const chan = parseInt(msgObj.midiChannel);
+  const chan = parseInt(msgObj.channel);
   const b1 = parseInt(msgObj.byte1);
   const b2 = parseInt(msgObj.byte2);
 
   let boxCmd;
   if (msgObj.type == 'PC') {
-    boxCmd = Buffer.from([cmdId, chan, b1]);
+    boxCmd = Buffer.from([cmdId, chan, b1, 0x0D, 0x0A]);
     console.log(`Sending midi PC command to BOX.`);
     console.log(`  cmd id, midi channel, pc value`);
     console.log(`  Bytes: ${boxCmd.readUInt8(0)}, ${boxCmd.readUInt8(1)}, ${boxCmd.readUInt8(2)}`);
   }
   else {
-    boxCmd = Buffer.from([cmdId, chan, b1, b2]);
+    boxCmd = Buffer.from([cmdId, chan, b1, b2, 0x0D, 0x0A]);
     console.log(`Sending midi CC command to BOX.`);
     console.log(`cmd id, midi channel, cc param, cc value`)
     console.log(`  Bytes: ${boxCmd.readUInt8(0)}, ${boxCmd.readUInt8(1)}, ${boxCmd.readUInt8(2)}, ${boxCmd.readUInt8(3)}`)
