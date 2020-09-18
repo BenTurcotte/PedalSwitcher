@@ -1,0 +1,1267 @@
+{
+    "audioLoops": [
+        {
+            "$$hashKey": "object:5",
+            "engagged": true,
+            "name": "mutron"
+        },
+        {
+            "$$hashKey": "object:6",
+            "engagged": false,
+            "name": "tentacle"
+        },
+        {
+            "$$hashKey": "object:4",
+            "engagged": false,
+            "name": "bloom"
+        },
+        {
+            "$$hashKey": "object:7",
+            "engagged": false,
+            "name": "moodZOIA"
+        },
+        {
+            "$$hashKey": "object:12",
+            "engagged": false,
+            "name": "tomato"
+        },
+        {
+            "$$hashKey": "object:13",
+            "engagged": false,
+            "name": "echosystem"
+        },
+        {
+            "$$hashKey": "object:14",
+            "engagged": false,
+            "name": "gravinyl"
+        },
+        {
+            "$$hashKey": "object:15",
+            "engagged": false,
+            "name": "(empty)"
+        }
+    ],
+    "address": "192.168.66.176",
+    "port": "1234",
+    "midiDevices": [
+        {
+            "name": "Gravitas",
+            "channel": 5,
+            "pc": {
+                "min": 0,
+                "max": 122,
+                "currentValue": 0
+            },
+            "cc": {
+                "knobs": [
+                    {
+                        "name": "Drive",
+                        "param": 14,
+                        "min": 0,
+                        "max": 127,
+                        "currentValue": 64
+                    },
+                    {
+                        "name": "Volume",
+                        "param": 15,
+                        "min": 0,
+                        "max": 127,
+                        "currentValue": 64
+                    },
+                    {
+                        "name": "Tone",
+                        "param": 16,
+                        "min": 0,
+                        "max": 127,
+                        "currentValue": 64
+                    },
+                    {
+                        "name": "Rate",
+                        "param": 17,
+                        "min": 0,
+                        "max": 127,
+                        "currentValue": 64
+                    },
+                    {
+                        "name": "Depth",
+                        "param": 18,
+                        "min": 0,
+                        "max": 127,
+                        "currentValue": 64
+                    },
+                    {
+                        "name": "Sway",
+                        "param": 19,
+                        "min": 0,
+                        "max": 127,
+                        "currentValue": 64
+                    },
+                    {
+                        "name": "Ramp",
+                        "param": 20,
+                        "min": 0,
+                        "max": 127,
+                        "currentValue": 64
+                    },
+                    {
+                        "name": "Expression",
+                        "param": 100,
+                        "min": 0,
+                        "max": 127,
+                        "currentValue": 64
+                    }
+                ],
+                "selectors": [
+                    {
+                        "name": "TapDiv",
+                        "param": 21,
+                        "currentValue": 0,
+                        "valueOptions": [
+                            {
+                                "name": "1/1",
+                                "value": 0
+                            },
+                            {
+                                "name": "1/2",
+                                "value": 1
+                            },
+                            {
+                                "name": "1/4t",
+                                "value": 2
+                            },
+                            {
+                                "name": "1/4",
+                                "value": 3
+                            },
+                            {
+                                "name": "1/8",
+                                "value": 4
+                            },
+                            {
+                                "name": "1/16",
+                                "value": 5
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Midi Clock Mode",
+                        "param": 51,
+                        "currentValue": 127,
+                        "valueOptions": [
+                            {
+                                "name": "Ignore",
+                                "value": 0
+                            },
+                            {
+                                "name": "Listen",
+                                "value": 127
+                            }
+                        ]
+                    }
+                ],
+                "singles": [
+                    {
+                        "name": "Bypass",
+                        "param": 102,
+                        "value": 0
+                    },
+                    {
+                        "name": "Engage",
+                        "param": 102,
+                        "value": 127
+                    },
+                    {
+                        "name": "Tap",
+                        "param": 93,
+                        "value": 127
+                    }
+                ]
+            }
+        },
+        {
+            "name": "Warped Vinyl",
+            "channel": 6,
+            "pc": {
+                "min": 0,
+                "max": 122,
+                "currentValue": 0
+            },
+            "cc": {
+                "knobs": [
+                    {
+                        "name": "Tone",
+                        "param": 14,
+                        "min": 0,
+                        "max": 127,
+                        "currentValue": 64
+                    },
+                    {
+                        "name": "Lag",
+                        "param": 15,
+                        "min": 0,
+                        "max": 127,
+                        "currentValue": 64
+                    },
+                    {
+                        "name": "Mix",
+                        "param": 16,
+                        "min": 0,
+                        "max": 127,
+                        "currentValue": 64
+                    },
+                    {
+                        "name": "RPM",
+                        "param": 17,
+                        "min": 0,
+                        "max": 127,
+                        "currentValue": 64
+                    },
+                    {
+                        "name": "Depth",
+                        "param": 18,
+                        "min": 0,
+                        "max": 127,
+                        "currentValue": 64
+                    },
+                    {
+                        "name": "Warp",
+                        "param": 19,
+                        "min": 0,
+                        "max": 127,
+                        "currentValue": 64
+                    },
+                    {
+                        "name": "Ramp",
+                        "param": 20,
+                        "min": 0,
+                        "max": 127,
+                        "currentValue": 64
+                    },
+                    {
+                        "name": "Expression",
+                        "param": 100,
+                        "min": 0,
+                        "max": 127,
+                        "currentValue": 64
+                    }
+                ],
+                "selectors": [
+                    {
+                        "name": "TapDiv",
+                        "param": 21,
+                        "currentValue": 0,
+                        "valueOptions": [
+                            {
+                                "name": "1/1",
+                                "value": 0
+                            },
+                            {
+                                "name": "1/2",
+                                "value": 1
+                            },
+                            {
+                                "name": "1/4t",
+                                "value": 2
+                            },
+                            {
+                                "name": "1/4",
+                                "value": 3
+                            },
+                            {
+                                "name": "1/8",
+                                "value": 4
+                            },
+                            {
+                                "name": "1/16",
+                                "value": 5
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Midi Clock Mode",
+                        "param": 51,
+                        "currentValue": 127,
+                        "valueOptions": [
+                            {
+                                "name": "Ignore",
+                                "value": 0
+                            },
+                            {
+                                "name": "Listen",
+                                "value": 127
+                            }
+                        ]
+                    }
+                ],
+                "singles": [
+                    {
+                        "name": "Bypass",
+                        "param": 102,
+                        "value": 0
+                    },
+                    {
+                        "name": "Engage",
+                        "param": 102,
+                        "value": 127
+                    },
+                    {
+                        "name": "Tap",
+                        "param": 93,
+                        "value": 127
+                    }
+                ]
+            }
+        },
+        {
+            "name": "M O O D",
+            "channel": 4,
+            "pc": {
+                "min": 0,
+                "max": 122,
+                "currentValue": 0
+            },
+            "cc": {
+                "knobs": [
+                    {
+                        "name": "Time",
+                        "param": 14,
+                        "min": 0,
+                        "max": 127,
+                        "currentValue": 64
+                    },
+                    {
+                        "name": "Mix",
+                        "param": 15,
+                        "min": 0,
+                        "max": 127,
+                        "currentValue": 64
+                    },
+                    {
+                        "name": "Length",
+                        "param": 16,
+                        "min": 0,
+                        "max": 127,
+                        "currentValue": 64
+                    },
+                    {
+                        "name": "Modify (wet)",
+                        "param": 17,
+                        "min": 0,
+                        "max": 127,
+                        "currentValue": 64
+                    },
+                    {
+                        "name": "Clock",
+                        "param": 18,
+                        "min": 0,
+                        "max": 127,
+                        "currentValue": 64
+                    },
+                    {
+                        "name": "Modify (loop)",
+                        "param": 19,
+                        "min": 0,
+                        "max": 127,
+                        "currentValue": 64
+                    },
+                    {
+                        "name": "Expression",
+                        "param": 100,
+                        "min": 0,
+                        "max": 127,
+                        "currentValue": 64
+                    }
+                ],
+                "selectors": [
+                    {
+                        "name": "Wet Type",
+                        "param": 21,
+                        "currentValue": 1,
+                        "valueOptions": [
+                            {
+                                "name": "Reverb",
+                                "value": 1
+                            },
+                            {
+                                "name": "Delay",
+                                "value": 2
+                            },
+                            {
+                                "name": "Slip",
+                                "value": 3
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Loop Type",
+                        "param": 22,
+                        "currentValue": 1,
+                        "valueOptions": [
+                            {
+                                "name": "Env",
+                                "value": 1
+                            },
+                            {
+                                "name": "Tape",
+                                "value": 2
+                            },
+                            {
+                                "name": "Stretch",
+                                "value": 3
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Gets Wet",
+                        "param": 23,
+                        "currentValue": 1,
+                        "valueOptions": [
+                            {
+                                "name": "Input",
+                                "value": 1
+                            },
+                            {
+                                "name": "Input + Loop",
+                                "value": 2
+                            },
+                            {
+                                "name": "Loop",
+                                "value": 3
+                            }
+                        ]
+                    }
+                ],
+                "singles": [
+                    {
+                        "name": "Bypass",
+                        "param": 102,
+                        "value": 0
+                    },
+                    {
+                        "name": "Prev On State",
+                        "param": 102,
+                        "value": 127
+                    },
+                    {
+                        "name": "Just Loop",
+                        "param": 103,
+                        "value": 127
+                    },
+                    {
+                        "name": "Just Wet",
+                        "param": 103,
+                        "value": 85
+                    },
+                    {
+                        "name": "Both On",
+                        "param": 103,
+                        "value": 127
+                    }
+                ]
+            }
+        },
+        {
+            "name": "auTOMATOne",
+            "channel": 2,
+            "pc": {
+                "min": 0,
+                "max": 29,
+                "currentValue": 0
+            },
+            "cc": {
+                "knobs": [
+                    {
+                        "name": "Volume",
+                        "param": 14,
+                        "min": 0,
+                        "max": 127,
+                        "currentValue": 64
+                    },
+                    {
+                        "name": "Treble",
+                        "param": 15,
+                        "min": 0,
+                        "max": 127,
+                        "currentValue": 64
+                    },
+                    {
+                        "name": "Mids",
+                        "param": 16,
+                        "min": 0,
+                        "max": 127,
+                        "currentValue": 64
+                    },
+                    {
+                        "name": "Freq",
+                        "param": 17,
+                        "min": 0,
+                        "max": 127,
+                        "currentValue": 64
+                    },
+                    {
+                        "name": "Bass",
+                        "param": 18,
+                        "min": 0,
+                        "max": 127,
+                        "currentValue": 64
+                    },
+                    {
+                        "name": "Gain",
+                        "param": 19,
+                        "min": 0,
+                        "max": 127,
+                        "currentValue": 20
+                    },
+                    {
+                        "name": "Expression",
+                        "param": 100,
+                        "min": 0,
+                        "max": 127,
+                        "currentValue": 0
+                    }
+                ],
+                "selectors": [
+                    {
+                        "name": "Jump",
+                        "param": 22,
+                        "currentValue": 1,
+                        "valueOptions": [
+                            {
+                                "name": "Off",
+                                "value": 1
+                            },
+                            {
+                                "name": "0",
+                                "value": 2
+                            },
+                            {
+                                "name": "5",
+                                "value": 3
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Mids",
+                        "param": 23,
+                        "currentValue": 1,
+                        "valueOptions": [
+                            {
+                                "name": "Off",
+                                "value": 1
+                            },
+                            {
+                                "name": "Pre",
+                                "value": 2
+                            },
+                            {
+                                "name": "Post",
+                                "value": 3
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Q",
+                        "param": 24,
+                        "currentValue": 1,
+                        "valueOptions": [
+                            {
+                                "name": "Wide",
+                                "value": 1
+                            },
+                            {
+                                "name": "Medium",
+                                "value": 2
+                            },
+                            {
+                                "name": "Narrow",
+                                "value": 3
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Diode",
+                        "param": 25,
+                        "currentValue": 1,
+                        "valueOptions": [
+                            {
+                                "name": "Off",
+                                "value": 1
+                            },
+                            {
+                                "name": "Silicon",
+                                "value": 2
+                            },
+                            {
+                                "name": "Germanium",
+                                "value": 3
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Fuzz",
+                        "param": 26,
+                        "currentValue": 1,
+                        "valueOptions": [
+                            {
+                                "name": "Off",
+                                "value": 1
+                            },
+                            {
+                                "name": "Open",
+                                "value": 2
+                            },
+                            {
+                                "name": "Gated",
+                                "value": 3
+                            }
+                        ]
+                    }
+                ],
+                "singles": [
+                    {
+                        "name": "Bypass",
+                        "param": 102,
+                        "value": 0
+                    },
+                    {
+                        "name": "Engage",
+                        "param": 102,
+                        "value": 127
+                    }
+                ]
+            }
+        },
+        {
+            "name": "Echosystem",
+            "channel": 7,
+            "pc": {
+                "min": 0,
+                "max": 100,
+                "currentValue": 0
+            },
+            "cc": {
+                "knobs": [
+                    {
+                        "name": "A - Time/Ratio",
+                        "param": 101,
+                        "min": 0,
+                        "max": 127,
+                        "currentValue": 64
+                    },
+                    {
+                        "name": "A - Mix",
+                        "param": 102,
+                        "min": 0,
+                        "max": 127,
+                        "currentValue": 64
+                    },
+                    {
+                        "name": "A - Volume",
+                        "param": 103,
+                        "min": 0,
+                        "max": 127,
+                        "currentValue": 64
+                    },
+                    {
+                        "name": "A - Feedback",
+                        "param": 104,
+                        "min": 0,
+                        "max": 127,
+                        "currentValue": 64
+                    },
+                    {
+                        "name": "A - Tone",
+                        "param": 105,
+                        "min": 0,
+                        "max": 127,
+                        "currentValue": 64
+                    },
+                    {
+                        "name": "A - Thing 1",
+                        "param": 106,
+                        "min": 0,
+                        "max": 127,
+                        "currentValue": 64
+                    },
+                    {
+                        "name": "A - Thing 2",
+                        "param": 107,
+                        "min": 0,
+                        "max": 127,
+                        "currentValue": 64
+                    },
+                    {
+                        "name": "B - Time/Ratio",
+                        "param": 110,
+                        "min": 0,
+                        "max": 127,
+                        "currentValue": 64
+                    },
+                    {
+                        "name": "B - Mix",
+                        "param": 111,
+                        "min": 0,
+                        "max": 127,
+                        "currentValue": 64
+                    },
+                    {
+                        "name": "B - Volume",
+                        "param": 112,
+                        "min": 0,
+                        "max": 127,
+                        "currentValue": 64
+                    },
+                    {
+                        "name": "B - Feedback",
+                        "param": 113,
+                        "min": 0,
+                        "max": 127,
+                        "currentValue": 64
+                    },
+                    {
+                        "name": "B - Tone",
+                        "param": 114,
+                        "min": 0,
+                        "max": 127,
+                        "currentValue": 64
+                    },
+                    {
+                        "name": "B - Thing 1",
+                        "param": 115,
+                        "min": 0,
+                        "max": 127,
+                        "currentValue": 64
+                    },
+                    {
+                        "name": "B - Thing 2",
+                        "param": 116,
+                        "min": 0,
+                        "max": 127,
+                        "currentValue": 64
+                    }
+                ],
+                "selectors": [
+                    {
+                        "name": "A - Mode",
+                        "param": 100,
+                        "currentValue": 0,
+                        "valueOptions": [
+                            {
+                                "name": "Digi - Pristine",
+                                "value": 0
+                            },
+                            {
+                                "name": "Digi - Short Stuff 1980",
+                                "value": 1
+                            },
+                            {
+                                "name": "Digi - Ping Pong",
+                                "value": 2
+                            },
+                            {
+                                "name": "Digi - Dynamic Feedback",
+                                "value": 3
+                            },
+                            {
+                                "name": "Tape - New Tape",
+                                "value": 8
+                            },
+                            {
+                                "name": "Tape - Old Tape",
+                                "value": 9
+                            },
+                            {
+                                "name": "Tape - Echoplex",
+                                "value": 10
+                            },
+                            {
+                                "name": "Tape - Space Echo",
+                                "value": 11
+                            },
+                            {
+                                "name": "Anlg - BBD",
+                                "value": 16
+                            },
+                            {
+                                "name": "Anlg - Tube BBD",
+                                "value": 17
+                            },
+                            {
+                                "name": "Anlg - Deluxe Memory Boy",
+                                "value": 18
+                            },
+                            {
+                                "name": "Anlg - Echorec",
+                                "value": 19
+                            },
+                            {
+                                "name": "Multi - Digital",
+                                "value": 24
+                            },
+                            {
+                                "name": "Multi - Tone Taps",
+                                "value": 25
+                            },
+                            {
+                                "name": "Multi - Preset Pattern Mode",
+                                "value": 26
+                            },
+                            {
+                                "name": "Mod - Panning",
+                                "value": 32
+                            },
+                            {
+                                "name": "Mod - Trem",
+                                "value": 33
+                            },
+                            {
+                                "name": "Mod - Waveform",
+                                "value": 34
+                            },
+                            {
+                                "name": "Filter - Pulse",
+                                "value": 40
+                            },
+                            {
+                                "name": "Filter - Warp",
+                                "value": 41
+                            },
+                            {
+                                "name": "Filter - Swoosh Echo",
+                                "value": 42
+                            },
+                            {
+                                "name": "Ambient - Drunk Ewok",
+                                "value": 48
+                            },
+                            {
+                                "name": "Ambient - Triggered Swell",
+                                "value": 49
+                            },
+                            {
+                                "name": "Ambient - Triggered Multi Swell",
+                                "value": 50
+                            },
+                            {
+                                "name": "Ambient - Long Delay",
+                                "value": 51
+                            },
+                            {
+                                "name": "Ambient - Input Rider",
+                                "value": 52
+                            },
+                            {
+                                "name": "DelVerb - Hall",
+                                "value": 56
+                            },
+                            {
+                                "name": "DelVerb - Plate",
+                                "value": 57
+                            },
+                            {
+                                "name": "Reverse - Delay",
+                                "value": 64
+                            },
+                            {
+                                "name": "Reverse - Dual Pitch",
+                                "value": 65
+                            },
+                            {
+                                "name": "Reverse - Triggered",
+                                "value": 66
+                            },
+                            {
+                                "name": "Stutter - Chop Mode",
+                                "value": 72
+                            },
+                            {
+                                "name": "Stutter - Auto Stutter",
+                                "value": 73
+                            },
+                            {
+                                "name": "LoFi - Old Timer",
+                                "value": 80
+                            },
+                            {
+                                "name": "LoFi - Digital Death",
+                                "value": 81
+                            },
+                            {
+                                "name": "LoFi - Distorted Swells",
+                                "value": 82
+                            },
+                            {
+                                "name": "Whisky - Knobs' Seesaw",
+                                "value": 88
+                            },
+                            {
+                                "name": "Whisky - Christopher Glitchens",
+                                "value": 89
+                            },
+                            {
+                                "name": "Whisky - Shimmery Fixed Pitch Shift",
+                                "value": 90
+                            }
+                        ]
+                    },
+                    {
+                        "name": "B - Mode",
+                        "param": 109,
+                        "currentValue": 0,
+                        "valueOptions": [
+                            {
+                                "name": "Digi - Pristine",
+                                "value": 0
+                            },
+                            {
+                                "name": "Digi - Short Stuff 1980",
+                                "value": 1
+                            },
+                            {
+                                "name": "Digi - Ping Pong",
+                                "value": 2
+                            },
+                            {
+                                "name": "Digi - Dynamic Feedback",
+                                "value": 3
+                            },
+                            {
+                                "name": "Tape - New Tape",
+                                "value": 8
+                            },
+                            {
+                                "name": "Tape - Old Tape",
+                                "value": 9
+                            },
+                            {
+                                "name": "Tape - Echoplex",
+                                "value": 10
+                            },
+                            {
+                                "name": "Tape - Space Echo",
+                                "value": 11
+                            },
+                            {
+                                "name": "Anlg - BBD",
+                                "value": 16
+                            },
+                            {
+                                "name": "Anlg - Tube BBD",
+                                "value": 17
+                            },
+                            {
+                                "name": "Anlg - Deluxe Memory Boy",
+                                "value": 18
+                            },
+                            {
+                                "name": "Anlg - Echorec",
+                                "value": 19
+                            },
+                            {
+                                "name": "Multi - Digital",
+                                "value": 24
+                            },
+                            {
+                                "name": "Multi - Tone Taps",
+                                "value": 25
+                            },
+                            {
+                                "name": "Multi - Preset Pattern Mode",
+                                "value": 26
+                            },
+                            {
+                                "name": "Mod - Panning",
+                                "value": 32
+                            },
+                            {
+                                "name": "Mod - Trem",
+                                "value": 33
+                            },
+                            {
+                                "name": "Mod - Waveform",
+                                "value": 34
+                            },
+                            {
+                                "name": "Filter - Pulse",
+                                "value": 40
+                            },
+                            {
+                                "name": "Filter - Warp",
+                                "value": 41
+                            },
+                            {
+                                "name": "Filter - Swoosh Echo",
+                                "value": 42
+                            },
+                            {
+                                "name": "Ambient - Drunk Ewok",
+                                "value": 48
+                            },
+                            {
+                                "name": "Ambient - Triggered Swell",
+                                "value": 49
+                            },
+                            {
+                                "name": "Ambient - Triggered Multi Swell",
+                                "value": 50
+                            },
+                            {
+                                "name": "Ambient - Long Delay",
+                                "value": 51
+                            },
+                            {
+                                "name": "Ambient - Input Rider",
+                                "value": 52
+                            },
+                            {
+                                "name": "DelVerb - Hall",
+                                "value": 56
+                            },
+                            {
+                                "name": "DelVerb - Plate",
+                                "value": 57
+                            },
+                            {
+                                "name": "Reverse - Delay",
+                                "value": 64
+                            },
+                            {
+                                "name": "Reverse - Dual Pitch",
+                                "value": 65
+                            },
+                            {
+                                "name": "Reverse - Triggered",
+                                "value": 66
+                            },
+                            {
+                                "name": "Stutter - Chop Mode",
+                                "value": 72
+                            },
+                            {
+                                "name": "Stutter - Auto Stutter",
+                                "value": 73
+                            },
+                            {
+                                "name": "LoFi - Old Timer",
+                                "value": 80
+                            },
+                            {
+                                "name": "LoFi - Digital Death",
+                                "value": 81
+                            },
+                            {
+                                "name": "LoFi - Distorted Swells",
+                                "value": 82
+                            },
+                            {
+                                "name": "Whisky - Knobs' Seesaw",
+                                "value": 88
+                            },
+                            {
+                                "name": "Whisky - Christopher Glitchens",
+                                "value": 89
+                            },
+                            {
+                                "name": "Whisky - Shimmery Fixed Pitch Shift",
+                                "value": 90
+                            }
+                        ]
+                    },
+                    {
+                        "name": "A - Delay Time Source",
+                        "param": 108,
+                        "currentValue": 0,
+                        "valueOptions": [
+                            {
+                                "name": "Global Tap",
+                                "value": 0
+                            },
+                            {
+                                "name": "Local Tap",
+                                "value": 1
+                            },
+                            {
+                                "name": "Just Knob",
+                                "value": 2
+                            }
+                        ]
+                    },
+                    {
+                        "name": "B - Delay Time Source",
+                        "param": 110,
+                        "currentValue": 0,
+                        "valueOptions": [
+                            {
+                                "name": "Global Tap",
+                                "value": 0
+                            },
+                            {
+                                "name": "Local Tap",
+                                "value": 1
+                            },
+                            {
+                                "name": "Just Knob",
+                                "value": 2
+                            }
+                        ]
+                    },
+                    {
+                        "name": "A - Midi Clock Mode",
+                        "param": 51,
+                        "currentValue": 127,
+                        "valueOptions": [
+                            {
+                                "name": "Ignore",
+                                "value": 0
+                            },
+                            {
+                                "name": "Listen",
+                                "value": 127
+                            }
+                        ]
+                    },
+                    {
+                        "name": "B - Midi Clock Mode",
+                        "param": 52,
+                        "currentValue": 127,
+                        "valueOptions": [
+                            {
+                                "name": "Ignore",
+                                "value": 0
+                            },
+                            {
+                                "name": "Listen",
+                                "value": 127
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Engine Routing",
+                        "param": 118,
+                        "currentValue": 0,
+                        "valueOptions": [
+                            {
+                                "name": "Single",
+                                "value": 0
+                            },
+                            {
+                                "name": "Parallel",
+                                "value": 1
+                            },
+                            {
+                                "name": "Serial",
+                                "value": 2
+                            },
+                            {
+                                "name": "Left/Right",
+                                "value": 3
+                            }
+                        ]
+                    }
+                ],
+                "singles": [
+                    {
+                        "name": "Bypass",
+                        "param": 60,
+                        "value": 0
+                    },
+                    {
+                        "name": "Engage",
+                        "param": 60,
+                        "value": 127
+                    },
+                    {
+                        "name": "Solo A",
+                        "param": 41,
+                        "value": 127
+                    },
+                    {
+                        "name": "Un-solo A",
+                        "param": 41,
+                        "value": 0
+                    },
+                    {
+                        "name": "Solo B",
+                        "param": 42,
+                        "value": 127
+                    },
+                    {
+                        "name": "Un-solo B",
+                        "param": 42,
+                        "value": 0
+                    },
+                    {
+                        "name": "Left (press)",
+                        "param": 35,
+                        "value": 64
+                    },
+                    {
+                        "name": "Left (hold)",
+                        "param": 35,
+                        "value": 127
+                    },
+                    {
+                        "name": "Left (release)",
+                        "param": 35,
+                        "value": 0
+                    },
+                    {
+                        "name": "Middle (press)",
+                        "param": 36,
+                        "value": 64
+                    },
+                    {
+                        "name": "Right (press)",
+                        "param": 37,
+                        "value": 64
+                    }
+                ]
+            }
+        },
+        {
+            "name": "Bloom",
+            "channel": 3,
+            "pc": {
+                "min": 1,
+                "max": 5,
+                "currentValue": 0
+            },
+            "cc": {
+                "knobs": [],
+                "selectors": [],
+                "singles": [
+                    {
+                        "name": "Comp - ON",
+                        "param": 1,
+                        "value": 127
+                    },
+                    {
+                        "name": "Comp - OFF",
+                        "param": 1,
+                        "value": 0
+                    },
+                    {
+                        "name": "EQ - ON",
+                        "param": 2,
+                        "value": 127
+                    },
+                    {
+                        "name": "EQ - OFF",
+                        "param": 2,
+                        "value": 0
+                    },
+                    {
+                        "name": "Boost - ON",
+                        "param": 3,
+                        "value": 127
+                    },
+                    {
+                        "name": "Boost - OFF",
+                        "param": 3,
+                        "value": 0
+                    }
+                ]
+            }
+        }
+    ]
+}

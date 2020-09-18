@@ -1,10 +1,12 @@
 .pedal {
     width: 80%;
     height: 80%;
-    border-style: none;
-    border-width: thick;
-    background-color: tan;
-    font-size: 50px;
+    border-style: solid;
+    border-width: 5px;
+    border-radius: 5px;
+    border-color: lightcyan;
+    background-color: lightcyan;
+    font-size: 30px;
     margin: auto;
     align-self: center;
     text-align: center;
@@ -19,19 +21,10 @@
     transform: translate(-50%, -50%);
 }
 .pedal-on {
-    border-style: inset;
-    border-color: lightseagreen;
+    border-color: seagreen;
 }
 .pedal-off {
-    border-style: outset;
-    border-color: gray;
-}
-.pedal-unassigned {
-    opacity: 0.8;
-    background-color: gray;
-}
-.pedal-disabled {
-  opacity: 0.6;
+    border-color: lightcyan;
 }
 .pedal-table {
     width: 100%;
@@ -39,42 +32,4 @@
 }
 .pedal-table tr {
     height: 100px;
-}
-
-/* TODO: nice image display -- i.e. not ugly as shit */
-img {
-  width: 100%;
-  height: auto;
-}
-
-/*
-TODO: switch to flex layout for pedals so pedal images
-take up a proportionally-correct amount of space
-
-<div class="pedal-board>
-  <!-- style pedal divs so they are only as large as their content
-  <div class="pedal pedal-off" id="pedal1"><p>1</p></div>
-  <div class="pedal pedal-off" id="pedal2"><p>2</p></div>
-  <div class="pedal pedal-off" id="pedal3"><p>3</p></div>
-  etc...
-</div>
-
-*/
-.pedal-board {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-.pedal-board > * {
-  /* TODO: make more dynamic */
-  /* width: fit-content;
-  height: fit-content; */
-  display: inline-block;
-  max-width: 20%;
-  font-size: 30px;
-}
-.size-to-content {
-  width: fit-content;
-  height: fit-content;
 }

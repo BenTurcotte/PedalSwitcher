@@ -1,0 +1,51 @@
+{
+    "env": {
+        "path-to-arduino": "/Applications/Arduino.app/Contents/Java",
+        "arduino-avr-compiler-path": "${env:path-to-arduino}/hardware/tools/avr/bin/avr-g++"
+    },
+    "configurations": [
+        {
+            "name": "Arduino",
+            "defines": [
+                "ARDUINO=10810",
+                "__AVR_ATmega328P__",
+                "UBRRH"
+            ],
+            "includePath": [
+                "${workspaceRoot}",
+                "${env:path-to-arduino}/tools/**",
+                "${env:path-to-arduino}/libraries/**",
+                "${env:path-to-arduino}/hardware/arduino/**",
+                "${env:path-to-arduino}/hardware/arduino/avr/**",
+                "${env:path-to-arduino}/hardware/arduino/avr/cores/arduino/",
+                "${env:path-to-arduino}/hardware/arduino/avr/libraries/EEPROM/",
+                "${env:path-to-arduino}/hardware/arduino/avr/libraries/SPI/",
+                "${env:path-to-arduino}/hardware/arduino/avr/libraries/SoftwareSerial/",
+                "${env:path-to-arduino}/hardware/arduino/avr/libraries/Wire/",
+                "${env:path-to-arduino}/hardware/tools/avr/**",
+                "${env:path-to-arduino}/hardware/tools/avr/avr/include",
+                "${env:path-to-arduino}/hardware/tools/avr/avr/include/",
+                "${env:path-to-arduino}/hardware/tools/avr/avr/include/avr/",
+                "${env:path-to-arduino}/hardware/tools/avr/avr/include/compat/",
+                "${env:path-to-arduino}/hardware/tools/avr/avr/include/util/",
+                "${env:path-to-arduino}/hardware/tools/avr/lib/gcc/avr/4.*.*/include/",
+                "${env:path-to-arduino}/hardware/tools/avr/lib/gcc/avr/4.*.*/include-fixed/",
+                "/Applications/Arduino.app/Contents/Java/hardware/arduino/avr/**",
+                "/Applications/Arduino.app/Contents/Java/tools/**"
+            ],
+            "forcedInclude": [
+                "${env:path-to-arduino}/hardware/arduino/avr/cores/arduino/Arduino.h",
+                "/Applications/Arduino.app/Contents/Java/hardware/arduino/avr/cores/arduino/Arduino.h"
+            ],
+            "browse": {
+                "limitSymbolsToIncludedHeaders": true,
+                "databaseFilename": ""
+            },
+            "intelliSenseMode": "gcc-x64",
+            "cStandard": "c11",
+            "cppStandard": "c++11",
+            "compilerPath": "${env:arduino-avr-compiler-path} -std=gnu++11 -mmcu=atmega328p"
+        }
+    ],
+    "version": 4
+}

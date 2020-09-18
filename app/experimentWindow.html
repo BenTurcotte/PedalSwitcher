@@ -40,17 +40,119 @@
   </style>
 </head>
 <body>
-  <h2>alt plan:</h2>
-  <p>Rather than trying to recreate the exact look of the knobs on a pedal...  transform the knob-based interface to a slider-based interface so it looks kind of like an EQ panel...  it will make software interaction nicer (spinning a knob with a mouse is lowkey a pain in the ass), make dev time shorter, and (imo) look and feel nicer...  easier to recognize preset values as well with the histogram-like view vs. the knob positions</p>
-  
-  <input type="range" min="0" max="127" value="23" step="" class="slider" id="testSlider" />
-  <Label id="testSliderValueLabel">23</Label>
-  
-  <hr />
-  <p id="knobValue">0</p>
-  <hr />
-  <div id="test-knob" class="knob">
-    <p>-</p>
-  </div>
-  <script type="text/javascript" src="experimentWindow.js"></script>
+  <form id="warped-vinyl">
+    <table>
+      <tr>
+        <td>Tone</td>
+        <td>
+          <input type="range" min="0" max="127" id="tone-slider">
+        </td>
+      </tr>
+      <tr>
+        <td>vol</td>
+        <td>
+          <input type="range" min="0" max="127" id="vol-slider">
+        </td>
+      </tr>
+      <tr>
+        <td>Mix</td>
+        <td>
+          <input type="range" min="0" max="127" id="mix-slider">
+        </td>
+      </tr>
+      <tr>
+        <td>RPM</td>
+        <td>
+          <input type="range" min="0" max="127" id="rpm-slider">
+        </td>
+      </tr>
+      <tr>
+        <td>Depth</td>
+        <td>
+          <input type="range" min="0" max="127" id="depth-slider">
+        </td>
+      </tr>
+      <tr>
+        <td>Warp</td>
+        <td>
+          <input type="range" min="0" max="127" id="warp-slider">
+        </td>
+      </tr>
+      <tr>
+        <td>Ramp</td>
+        <td>
+          <input type="range" min="0" max="127" id="ramp-slider">
+        </td>
+      </tr>
+      <tr>
+        <td>Expression</td>
+        <td>
+          <input type="range" min="0" max="127" id="exp-slider">
+        </td>
+      </tr>
+      <tr>
+        <td>Tap division</td>
+        <td>
+          <select id="tap-division-selector">
+            <option value="0">1/1</option>
+            <option value="1">1/2</option>
+            <option value="2">1/4t</option>
+            <option value="3">1/4</option>
+            <option value="4">1/8</option>
+            <option value="5">1/16</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>Tap Tempo</td>
+        <td>
+          <button id="tap-tempo-button">Tap</button>
+        </td>
+      </tr>
+    </table>
+    <button id="bypass-switch-button">Bypass</button>
+  </form>
+
+  <script type = "text/javascript" src = "jquery/jquery-3.5.0.js"></script>
+  <script type = "text/javascript">
+    const electron = require('electron');
+    const {ipcRenderer} = electron;
+
+    // TODO: make generic enough to control each param above
+
+    const warpedVinylChannel = 2;
+    
+    const toneSlider = document.getElementById('tone-slider');
+    const volSlider = document.getElementById('vol-slider');
+    const mixSlider = document.getElementById('mix-slider');
+    const rpmSlider = document.getElementById('rpm-slider');
+    const depthSlider = document.getElementById('depth-slider');
+    const warpSlider = document.getElementById('warp-slider');
+    const rampSlider = document.getElementById('ramp-slider');
+    const expSlider = document.getElementById('exp-slider');
+    const sliderParams = [
+      { uiElem: toneSlider, midiCcParam: 14 },
+      { uiElem: volSlider, midiCcParam: 15 },
+      { uiElem: mixSlider, midiCcParam: 16 },
+      { uiElem: rpmSlider, midiCcParam: 17 },
+      { uiElem: depthSlider, midiCcParam: 18 },
+      { uiElem: warpSlider, midiCcParam: 19 },
+      { uiElem: rampSlider, midiCcParam: 20 },
+      { uiElem: expSlider, midiCcParam: 100 }
+    ]
+
+    sliderParams.forEach(p => {
+      p.uiElem.addEventListener('input', (ev) => {
+        // TODO: fire event to send cc to BOX
+        console.log(`sending midi cmd: ${warpedVinylChannel}, ${'CC'}, ${p.midiCcParam}, ${p.uiElem.value}`);
+        ipcRenderer.send('send-box-cmd-midi', {
+          channel: warpedVinylChannel,
+          type: 'CC',
+          byte1: p.midiCcParam,
+          byte2: p.uiElem.value
+        })
+      });  
+    });
+  </script>
+
 </body>

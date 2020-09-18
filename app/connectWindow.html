@@ -11,21 +11,30 @@
         <label>IP: </label>
       </td>
       <td>
-        <input type="text" id="address" autofocus value="localhost">
+        <input type="number" min="0" max="255" minlength="1" maxlength="3" id="addressByte1">
+      </td>
+      <td>
+        <input type="number" min="0" max="255" minlength="1" maxlength="3" id="addressByte2">
+      </td>
+      <td>
+        <input type="number" min="0" max="255" minlength="1" maxlength="3" id="addressByte3">
+      </td>
+      <td>
+        <input type="number" min="0" max="255" minlength="1" maxlength="3" id="addressByte4">
       </td>
     </tr>
     <tr>
       <td>
         <label>Port: </label>
       </td>
-      <td>
-        <input type="number" id="port" value="8124">
+      <td colspan="4">
+        <input type="number" id="port">
       </td>
     </tr>
   </table>
   <hr />
 
-  <button class="default-option" id="connectBtn">Connect</button>
+  <button class="default-option" id="connectBtn" autofocus>Connect</button>
   <button id="cancelBtn">Cancel</button>
 
   <script type="text/javascript" src="connectWindow.js"></script>
